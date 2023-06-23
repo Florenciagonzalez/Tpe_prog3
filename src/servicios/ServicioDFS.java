@@ -1,3 +1,7 @@
+package servicios;
+
+import coleccion.Grafo;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -15,28 +19,29 @@ public class ServicioDFS {
 
     public List<Integer> dfsForest() {
         this.asignarColor();
-        Iterator<Integer> vertices = grafo.obtenerVertices();
-        while(vertices.hasNext()) {
-            Integer v = vertices.next();
-            if(registro.get(v).equals("blanco")) {
-                dfsVisit(v);
+
+        Iterator<Integer> it = grafo.obtenerVertices();
+        while (it.hasNext()){
+            int vertice = it.next();
+            if(registro.get(vertice).equals("blanco")) {
+                lista.add(vertice);
+                dfsVisit(vertice);
             }
         }
         return lista;
     }
 
-    private void dfsVisit(Integer v) {
-        registro.put(v, "amarillo");
-
+    private void dfsVisit(int v) {
+        registro.replace(v, "blanco", "amarillo");
         Iterator<Integer> adyacentes = grafo.obtenerAdyacentes(v);
-        while(adyacentes.hasNext()) {
-            Integer a = adyacentes.next();
-            if(registro.get(a).equals("blanco")) {
-                dfsVisit(a);
+        while (adyacentes.hasNext()){
+            int ady = adyacentes.next();
+            if(registro.get(ady).equals("blanco")){
+                lista.add(ady);
+                dfsVisit(ady);
             }
         }
-        lista.add(v);
-        registro.put(v, "black");
+        registro.replace(v, "amarillo", "negro");
     }
 
     private void asignarColor() {

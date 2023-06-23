@@ -1,3 +1,5 @@
+package coleccion;
+
 public class Arco<T> {
 
     private int verticeOrigen;
@@ -25,6 +27,17 @@ public class Arco<T> {
     @Override
     public String toString(){
         return "Origen: " + getVerticeOrigen() + "\nDestino: " + getVerticeDestino() + "\nEtiqueta: " + getEtiqueta();
+    }
+
+    @Override
+    public boolean equals(Object o){
+        try{
+            Arco<T> a = (Arco<T>) o;
+            return a.getVerticeOrigen() == this.getVerticeOrigen() && a.getVerticeDestino() == this.getVerticeDestino();
+        }
+        catch(Exception e){
+            return false;
+        }
     }
 
 }

@@ -1,3 +1,7 @@
+package coleccion;
+
+import coleccion.GrafoDirigido;
+
 public class GrafoNoDirigido<T> extends GrafoDirigido<T> {
 
     @Override

@@ -1,4 +1,7 @@
 
+import coleccion.GrafoDirigido;
+import servicios.ServicioDFS;
+
 import java.util.Iterator;
 
 public class Main {
@@ -6,37 +9,27 @@ public class Main {
 
         GrafoDirigido grafo = new GrafoDirigido();
 
-        grafo.agregarVertice(0);
-        grafo.agregarVertice(1);
         grafo.agregarVertice(2);
         grafo.agregarVertice(3);
+        grafo.agregarVertice(1);
         grafo.agregarVertice(4);
         grafo.agregarVertice(5);
-        grafo.agregarVertice(6);
 
 
-        grafo.agregarArco(0, 3, "uu");
-        grafo.agregarArco(3, 1, "pp");
-        grafo.agregarArco(1, 5, "bb");
-        grafo.agregarArco(3, 5, "bb");
-
-        grafo.agregarArco(0, 4, "uu");
-        grafo.agregarArco(4, 2, "bb");
-        grafo.agregarArco(2, 5, "bb");
+        grafo.agregarArco(1, 5, "pp");
+        grafo.agregarArco(2, 4, "pp");
+        grafo.agregarArco(4, 3, "pp");
+        grafo.agregarArco(3, 5, "pp");
 
 
-        grafo.agregarArco(2, 6, "bb");
-        grafo.agregarArco(6, 5, "bb");
+        ServicioDFS sv = new ServicioDFS(grafo);
+        System.out.println(sv.dfsForest());
 
-
-        ServicioBFS bfs = new ServicioBFS(grafo);
-        ServicioDFS dfs = new ServicioDFS(grafo);
-        ServicioCaminos caminos = new ServicioCaminos(grafo, 0, 5, 8);
-
-        System.out.println(grafo.contieneVertice(6));
-        grafo.borrarVertice(6);
-        System.out.println(grafo.contieneVertice(6));
-
+        Iterator<Integer> it = grafo.obtenerVertices();
+        while (it.hasNext()){
+            int v = it.next();
+            System.out.println(v);
+        }
 
     }
 }

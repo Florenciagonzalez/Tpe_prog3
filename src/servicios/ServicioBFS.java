@@ -1,3 +1,7 @@
+package servicios;
+
+import coleccion.Grafo;
+
 import java.util.*;
 
 public class ServicioBFS {
